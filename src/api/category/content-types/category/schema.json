@@ -27,6 +27,9 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "displayTitle": {
+      "type": "string"
     }
   }
 }

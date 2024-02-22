@@ -832,6 +832,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::product.product'
     >;
     slug: Attribute.UID<'api::category.category', 'name'>;
+    displayTitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -933,6 +934,30 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
 }
 
+export interface ApiSeoSeo extends Schema.CollectionType {
+  collectionName: 'seos';
+  info: {
+    singularName: 'seo';
+    pluralName: 'seos';
+    displayName: 'SEO';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    metaTitle: Attribute.String;
+    metaDescription: Attribute.Text;
+    shareImage: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::seo.seo', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::seo.seo', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -955,6 +980,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::contact.contact': ApiContactContact;
       'api::product.product': ApiProductProduct;
+      'api::seo.seo': ApiSeoSeo;
     }
   }
 }
