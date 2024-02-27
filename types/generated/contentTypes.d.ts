@@ -934,6 +934,47 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
 }
 
+export interface ApiReviewReview extends Schema.CollectionType {
+  collectionName: 'reviews';
+  info: {
+    singularName: 'review';
+    pluralName: 'reviews';
+    displayName: 'Review';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    firstName: Attribute.String;
+    email: Attribute.String;
+    content: Attribute.Text;
+    photo: Attribute.Media;
+    rate: Attribute.Integer;
+    product: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'api::product.product'
+    >;
+    lastName: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSeoSeo extends Schema.CollectionType {
   collectionName: 'seos';
   info: {
@@ -980,6 +1021,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::contact.contact': ApiContactContact;
       'api::product.product': ApiProductProduct;
+      'api::review.review': ApiReviewReview;
       'api::seo.seo': ApiSeoSeo;
     }
   }
