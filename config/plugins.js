@@ -1,14 +1,13 @@
-module.exports = ({ env }) => ({
-  email: {
+module.exports = ({env}) => ({
+  upload: {
     config: {
-      provider: 'sendgrid',
+      provider: "strapi-provider-upload-do",
       providerOptions: {
-        apiKey: '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',
-      },
-      settings: {
-        defaultFrom: 'nguyenduythanh421.tna@gmail.com',
-        defaultReplyTo: 'no-reply@strapi.io',
-      },
+        key: env('DO_SPACE_ACCESS_KEY'),
+        secret: env('DO_SPACE_SECRET_KEY'),
+        endpoint: env('DO_SPACE_ENDPOINT'),
+        space: env('DO_SPACE_BUCKET'),
+      }
     },
   },
-});
+})
