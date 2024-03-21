@@ -30,6 +30,9 @@
     },
     "displayTitle": {
       "type": "string"
+    },
+    "order": {
+      "type": "integer"
     }
   }
 }
