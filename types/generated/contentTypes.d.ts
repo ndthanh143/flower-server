@@ -834,6 +834,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     slug: Attribute.UID<'api::category.category', 'name'>;
     displayTitle: Attribute.String;
     order: Attribute.Integer;
+    images: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
