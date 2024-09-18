@@ -1,20 +1,20 @@
 FROM node:18-alpine
-# Installing libvips-dev for sharp Compatibility
-RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev
-ARG NODE_ENV=development
-ENV NODE_ENV=${NODE_ENV}
 
-COPY init-db.sh /docker-entrypoint-initdb.d/
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-WORKDIR /opt/
-COPY package.json yarn.lock ./
-RUN yarn config set network-timeout 600000 -g && yarn install
+COPY package.json /usr/src/app/
 
-WORKDIR /opt/app
-COPY . .
-ENV PATH /opt/node_modules/.bin:$PATH
-RUN chown -R node:node /opt/app
-USER node
-RUN ["yarn", "build"]
-EXPOSE 1337
-CMD ["yarn", "develop"]
+RUN yarn
+
+COPY . /usr/src/app
+
+# Development
+# CMD ["npm", "run", "start:dev"]
+
+# # Production
+RUN npm install -g @nestjs/cli pm2
+
+
+CMD ["pm2-runtime", "ecosystem.config.js", "--env", "production"]
+EXPOSE 3000
