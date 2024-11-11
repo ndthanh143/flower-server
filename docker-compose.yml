@@ -45,14 +45,13 @@ services:
       POSTGRES_DB: ${DATABASE_NAME}
     volumes:
       - ./.data:/var/lib/postgresql/data/ # if you want to use a bind folder
-
     ports:
       - '5432:5432'
     networks:
       - flower-strapi
 
 volumes:
-  flower-strapi-data:
+  flower-strapiDB:
 
 networks:
   flower-strapi:
