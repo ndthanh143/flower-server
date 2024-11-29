@@ -45,14 +45,16 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_DB: ${DATABASE_NAME}
     volumes:
-      - ./docker-volumes/postgres:/var/lib/postgresql/data # if you want to use a bind folder
-      # - flower-strapi-data:/var/lib/postgresql/data # if you want to use a bind folder
+      # - ./docker-volumes/postgres:/var/lib/postgresql/data # if you want to use a bind folder
+      - flower-strapi-data:/var/lib/postgresql/data # if you want to use a bind folder
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "ckan"]
     ports:
       - '5432:5432'
     networks:
       - flower-strapi
-# volumes:
-  # flower-strapi-data:
+volumes:
+  flower-strapi-data:
 
 networks:
   flower-strapi:
