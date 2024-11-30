@@ -4,7 +4,8 @@
   "info": {
     "singularName": "seo",
     "pluralName": "seos",
-    "displayName": "SEO"
+    "displayName": "SEO",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,14 +19,25 @@
       "type": "text"
     },
     "shareImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "pageName": {
+      "type": "string"
+    },
+    "pageUrl": {
+      "type": "string"
+    },
+    "seoUrl": {
+      "type": "uid",
+      "targetField": "pageUrl"
     }
   }
 }

@@ -41,6 +41,9 @@
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "metaTitle": {
+      "type": "string"
     }
   }
 }

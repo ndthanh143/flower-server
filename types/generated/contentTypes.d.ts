@@ -802,6 +802,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     thumbnail: Attribute.Media;
     content: Attribute.Blocks;
     slug: Attribute.UID<'api::blog.blog', 'title'>;
+    metaTitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -918,6 +919,8 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
+    metaTitle: Attribute.String;
+    metaDescription: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -983,6 +986,7 @@ export interface ApiSeoSeo extends Schema.CollectionType {
     singularName: 'seo';
     pluralName: 'seos';
     displayName: 'SEO';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -991,6 +995,9 @@ export interface ApiSeoSeo extends Schema.CollectionType {
     metaTitle: Attribute.String;
     metaDescription: Attribute.Text;
     shareImage: Attribute.Media;
+    pageName: Attribute.String;
+    pageUrl: Attribute.String;
+    seoUrl: Attribute.UID<'api::seo.seo', 'pageUrl'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
