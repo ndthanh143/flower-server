@@ -30,33 +30,33 @@ services:
       - ./public/uploads:/opt/app/public/uploads
     ports:
       - '1337:1337'
-    networks:
-      - flower-strapi
-    depends_on:
-      - flower-strapiDB
+    # networks:
+    #   - flower-strapi
+    # depends_on:
+    #   - flower-strapiDB
 
-  flower-strapiDB:
-    container_name: flower-strapiDB
-    restart: always
-    env_file: .env
-    image: postgres:16
-    environment:
-      POSTGRES_USER: ${DATABASE_USERNAME}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      POSTGRES_DB: ${DATABASE_NAME}
-    volumes:
-      # - ./docker-volumes/postgres:/var/lib/postgresql/data # if you want to use a bind folder
-      - flower-strapi-data:/var/lib/postgresql/data # if you want to use a bind folder
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "ckan"]
-    ports:
-      - '5432:5432'
-    networks:
-      - flower-strapi
-volumes:
-  flower-strapi-data:
+#   flower-strapiDB:
+#     container_name: flower-strapiDB
+#     restart: always
+#     env_file: .env
+#     image: postgres:16
+#     environment:
+#       POSTGRES_USER: ${DATABASE_USERNAME}
+#       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+#       POSTGRES_DB: ${DATABASE_NAME}
+#     volumes:
+#       # - ./docker-volumes/postgres:/var/lib/postgresql/data # if you want to use a bind folder
+#       - flower-strapi-data:/var/lib/postgresql/data # if you want to use a bind folder
+#     healthcheck:
+#       test: ["CMD", "pg_isready", "-U", "ckan"]
+#     ports:
+#       - '5432:5432'
+#     networks:
+#       - flower-strapi
+# volumes:
+#   flower-strapi-data:
 
-networks:
-  flower-strapi:
-    name: Flower-strapi
-    driver: bridge
+# networks:
+#   flower-strapi:
+#     name: Flower-strapi
+#     driver: bridge
