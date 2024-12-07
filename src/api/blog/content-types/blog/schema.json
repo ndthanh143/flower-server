@@ -16,10 +16,10 @@
       "type": "string"
     },
     "description": {
-      "type": "string"
+      "type": "text"
     },
     "metaDescription": {
-      "type": "string"
+      "type": "text"
     },
     "metaKeyword": {
       "type": "string"
@@ -35,15 +35,15 @@
         "audios"
       ]
     },
-    "content": {
-      "type": "blocks"
-    },
     "slug": {
       "type": "uid",
       "targetField": "title"
     },
     "metaTitle": {
       "type": "string"
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }
